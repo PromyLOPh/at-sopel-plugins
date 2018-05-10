@@ -133,7 +133,6 @@ class Mwrc:
         return s
 
     def refresh (self):
-
         delta = (timedelta () - self.initialBackoff)/self.maxHold
         holdfunc = lambda x: self.initialBackoff+delta*x
         msgs = []
@@ -158,9 +157,9 @@ class Mwrc:
             r = requests.get(url, params=params, timeout=30)
             changes = r.json ()['query']['recentchanges']
         except KeyError:
-            return
+            return msgs
         except:
-            return
+            return msgs
 
         # group changes by page
         for c in changes:
