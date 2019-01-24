@@ -105,13 +105,14 @@ class Mwrc:
         """
         Print condensed changes for one item (i.e. page)
         """
+        limit = 3
         firstc = changes[0]
         lastc = changes[-1]
         timeago = self.humantimedelta (datetime.now (tzutc ()) - lastc['timestamp'])
         s = '{title} '.format (title=lastc['title'])
         sChanges = []
         lastverb = None
-        for c in changes:
+        for c in changes[:limit]:
             verb = self.verbToPast (self.changeToVerb (c))
             t = ''
             if lastverb != verb:
@@ -125,6 +126,8 @@ class Mwrc:
                 t += ')'
             sChanges.append (t)
         s += ', '.join (sChanges)
+        if len (changes) > limit:
+            s += ' and {} additional changes made'.format (len (changes)-limit)
         s += ' {ago}'.format (ago=timeago)
         if lastc['revid']:
             s += ' -- {url}?diff={revid}&oldid={old_revid}'.format (url=self.url, revid=lastc['revid'], old_revid=firstc['old_revid'])
