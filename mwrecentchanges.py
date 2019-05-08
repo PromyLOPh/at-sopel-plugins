@@ -149,6 +149,7 @@ class Mwrc:
                 'rcdir': 'older',
                 'format': 'json',
                 'rcprop': 'user|comment|timestamp|sizes|title|flags|ids|loginfo',
+                'rcshow': '!bot',
                 'continue': '',
                 'rclimit': '500',
                 'rcnamespace': '|'.join (map (str, namespaces)),
