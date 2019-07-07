@@ -73,6 +73,10 @@ class Mwrc:
                 logtype = c['logtype']
                 if logtype in ['delete']:
                     return logtype
+            elif logaction == 'move_redir':
+                return 'move'
+            elif logaction == 'delete_redir':
+                return 'delete'
         elif eventtype in ('categorize', 'edit'):
             return 'edit'
         raise NotImplementedError (c)
