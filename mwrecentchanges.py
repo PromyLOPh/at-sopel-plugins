@@ -145,8 +145,9 @@ class Mwrc:
         msgs = []
 
         url = self.url + '/api.php'
-        # pages and files only
-        namespaces = [0, 6]
+        # main, project, file, template, category
+        # see https://www.archiveteam.org/api.php?action=query&meta=siteinfo&siprop=namespaces&formatversion=2
+        namespaces = [0, 4, 6, 10, 14]
         params = {
                 'action': 'query',
                 'list': 'recentchanges',
